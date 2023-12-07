@@ -14,14 +14,14 @@ class EditResultModalActions extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text("Cancel"),
+          child: const Text("Cancel"),
         ),
         const SizedBox(
           width: 16,
         ),
         ElevatedButton(
           onPressed: onSave,
-          child: Text("Save"),
+          child: const Text("Save"),
         ),
       ],
     );

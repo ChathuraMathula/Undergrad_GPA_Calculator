@@ -44,7 +44,7 @@ class _AddNewResultState extends ConsumerState<AddNewResult> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("Okay"),
+                child: const Text("Okay"),
               ),
             ],
           );

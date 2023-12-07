@@ -46,7 +46,7 @@ class _EditResultState extends ConsumerState<EditResult> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("Okay"),
+                child: const Text("Okay"),
               ),
             ],
           );

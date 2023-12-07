@@ -13,7 +13,7 @@ class ResultsScreen extends ConsumerWidget {
         useSafeArea: true,
         context: context,
         builder: (ctx) {
-          return AddNewResult();
+          return const AddNewResult();
         });
   }
 

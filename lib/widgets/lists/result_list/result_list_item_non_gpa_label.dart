@@ -7,7 +7,7 @@ class ResultListItemNonGpaLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget content = Container(
+    Widget content = const SizedBox(
       height: 20,
       width: 70,
     );

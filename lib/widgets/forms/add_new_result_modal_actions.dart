@@ -14,14 +14,14 @@ class AddNewResultModalActions extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text("Cancel"),
+          child: const Text("Cancel"),
         ),
         const SizedBox(
           width: 16,
         ),
         ElevatedButton(
           onPressed: onEnter,
-          child: Text("Enter"),
+          child: const Text("Enter"),
         ),
       ],
     );

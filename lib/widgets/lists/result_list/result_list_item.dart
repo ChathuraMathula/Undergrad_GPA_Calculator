@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:undergrad_tracker/models/result.dart';
 import 'package:undergrad_tracker/utils/color_utils.dart';
 import 'package:undergrad_tracker/widgets/lists/result_list/result_list_item_course_code.dart';
@@ -36,7 +33,7 @@ class ResultListItem extends StatelessWidget {
         children: [
           Container(
             width: 16,
-            padding: EdgeInsets.all(6),
+            padding: const EdgeInsets.all(6),
             child: Center(
               child: Container(
                 width: 8,

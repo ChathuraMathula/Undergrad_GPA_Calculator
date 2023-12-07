@@ -13,13 +13,13 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData().copyWith(
         colorScheme: kColorScheme,
-        appBarTheme: AppBarTheme().copyWith(
+        appBarTheme: const AppBarTheme().copyWith(
           backgroundColor: kColorScheme.onPrimaryContainer,
           foregroundColor: kColorScheme.onPrimary,
         ),
       ),
       title: "My app",
-      home: ResultsScreen(),
+      home: const ResultsScreen(),
     );
   }
 }
