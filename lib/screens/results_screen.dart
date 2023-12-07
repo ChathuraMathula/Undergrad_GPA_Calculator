@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:undergrad_tracker/widgets/drawer/app_drawer.dart';
-import 'package:undergrad_tracker/widgets/forms/add_result.dart';
+import 'package:undergrad_tracker/widgets/forms/add_new_result.dart';
 import 'package:undergrad_tracker/widgets/lists/result_list/result_list.dart';
 
 class ResultsScreen extends ConsumerWidget {
@@ -10,9 +9,11 @@ class ResultsScreen extends ConsumerWidget {
 
   addCourseResult(BuildContext context) {
     showModalBottomSheet(
+        isScrollControlled: true,
+        useSafeArea: true,
         context: context,
         builder: (ctx) {
-          return AddResult();
+          return AddNewResult();
         });
   }
 

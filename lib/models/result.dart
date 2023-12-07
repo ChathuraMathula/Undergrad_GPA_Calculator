@@ -4,11 +4,11 @@ class Result {
       required this.courseYear,
       required this.grade,
       required this.credits,
-      required this.isCountForGPA});
+      required this.isNonGPA});
 
   String courseCode;
   String grade;
   String courseYear;
-  int credits;
-  bool isCountForGPA;
+  String credits;
+  bool isNonGPA;
 }

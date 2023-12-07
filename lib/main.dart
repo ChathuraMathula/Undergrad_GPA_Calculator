@@ -4,7 +4,7 @@ import 'package:undergrad_tracker/widgets/app.dart';
 
 void main() {
   runApp(
-    const ProviderScope(
+    ProviderScope(
       child: App(),
     ),
   );
