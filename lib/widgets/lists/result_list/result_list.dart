@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:undergrad_tracker/models/result.dart';
 import 'package:undergrad_tracker/providers/results_provider.dart';
 import 'package:undergrad_tracker/utils/color_utils.dart';
+import 'package:undergrad_tracker/widgets/forms/edit_result.dart';
 import 'package:undergrad_tracker/widgets/lists/result_list/result_list_item.dart';
 
 class ResultList extends ConsumerStatefulWidget {
@@ -15,8 +16,46 @@ class ResultList extends ConsumerStatefulWidget {
 }
 
 class _ResultListState extends ConsumerState<ResultList> {
-  _onRemoveResult(Result result) {
+  _showUndoDeleteSnackBar({required Result result, required int index}) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 6),
+        content: Text('${result.courseCode} deleted successfully.'),
+        action: SnackBarAction(
+          label: "Undo",
+          onPressed: () {
+            _onUndoDeleteResult(
+              result: result,
+              index: index,
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  _onUndoDeleteResult({required Result result, required int index}) {
+    ref
+        .read(resultsProvider.notifier)
+        .addResultAt(index: index, result: result);
+  }
+
+  _onRemoveResult({required Result result, required int index}) {
     ref.read(resultsProvider.notifier).removeResult(result);
+    _showUndoDeleteSnackBar(result: result, index: index);
+  }
+
+  _onEditResult(Result result) {
+    showModalBottomSheet(
+        isScrollControlled: true,
+        useSafeArea: true,
+        context: context,
+        builder: (ctx) {
+          return EditResult(
+            result: result,
+          );
+        });
   }
 
   @override
@@ -55,16 +94,20 @@ class _ResultListState extends ConsumerState<ResultList> {
           onDismissed: (direction) {
             if (direction == DismissDirection.startToEnd) {
             } else if (direction == DismissDirection.endToStart) {
-              // _onRemoveResult(resultList[index]);
+              _onRemoveResult(
+                result: resultList[index],
+                index: index,
+              );
             }
           },
           confirmDismiss: (direction) async {
             if (direction == DismissDirection.startToEnd) {
+              _onEditResult(resultList[index]);
               return false;
             } else if (direction == DismissDirection.endToStart) {
-              // _onRemoveResult(resultList[index]);
-              return false;
+              return true;
             }
+            return false;
           },
           child: ResultListItem(result: resultList[index]),
         );

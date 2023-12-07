@@ -2,24 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:undergrad_tracker/models/result.dart';
 import 'package:undergrad_tracker/providers/results_provider.dart';
-import 'package:undergrad_tracker/widgets/forms/add_new_result_modal_actions.dart';
 import 'package:undergrad_tracker/widgets/forms/add_new_result_modal_layout.dart';
 import 'package:undergrad_tracker/widgets/forms/course_code_input.dart';
 import 'package:undergrad_tracker/widgets/forms/course_credits_input.dart';
 import 'package:undergrad_tracker/widgets/forms/course_grade_input.dart';
 import 'package:undergrad_tracker/widgets/forms/course_year_input.dart';
 import 'package:undergrad_tracker/widgets/forms/couse_non_gpa_checkbox.dart';
+import 'package:undergrad_tracker/widgets/forms/edit_result_modal_actions.dart';
 
-class AddNewResult extends ConsumerStatefulWidget {
-  const AddNewResult({super.key});
+class EditResult extends ConsumerStatefulWidget {
+  const EditResult({super.key, required this.result});
+
+  final Result result;
 
   @override
-  ConsumerState<AddNewResult> createState() {
-    return _AddNewResultState();
+  ConsumerState<EditResult> createState() {
+    return _EditResultState();
   }
 }
 
-class _AddNewResultState extends ConsumerState<AddNewResult> {
+class _EditResultState extends ConsumerState<EditResult> {
   late TextEditingController _courseCodeController;
   late TextEditingController _courseCreditsController;
   late TextEditingController _courseGradeController;
@@ -51,7 +53,17 @@ class _AddNewResultState extends ConsumerState<AddNewResult> {
         });
   }
 
-  onEnterResult() {
+  _showSnackBar({required message}) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 5),
+        content: Text(message),
+      ),
+    );
+  }
+
+  onSaveResult() {
     if (_courseCodeController.text.isEmpty ||
         _courseCreditsController.text.isEmpty ||
         _courseYearController.text.isEmpty ||
@@ -68,8 +80,29 @@ class _AddNewResultState extends ConsumerState<AddNewResult> {
       isNonGPA: _isNonGpa,
     );
 
-    ref.read(resultsProvider.notifier).addResult(result);
+    ref.read(resultsProvider.notifier).updateResult(result);
     Navigator.of(context).pop();
+    _showSnackBar(
+      message: '${result.courseCode} updated successfully.',
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _courseCodeController = TextEditingController(
+      text: widget.result.courseCode,
+    );
+    _courseYearController = TextEditingController(
+      text: widget.result.courseYear,
+    );
+    _courseGradeController = TextEditingController(
+      text: widget.result.grade,
+    );
+    _courseCreditsController = TextEditingController(
+      text: widget.result.credits,
+    );
+    _isNonGpa = widget.result.isNonGPA;
   }
 
   @override
@@ -82,21 +115,12 @@ class _AddNewResultState extends ConsumerState<AddNewResult> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    _courseCodeController = TextEditingController();
-    _courseYearController = TextEditingController();
-    _courseGradeController = TextEditingController();
-    _courseCreditsController = TextEditingController();
-    _isNonGpa = false;
-  }
-
-  @override
   Widget build(BuildContext context) {
     return AddNewResultModalLayout(
-      title: "Enter Result",
+      title: "Edit Result",
       courseCodeInput: CourseCodeInput(
         controller: _courseCodeController,
+        readOnly: true,
       ),
       courseYearInput: CourseYearInput(
         controller: _courseYearController,
@@ -111,8 +135,8 @@ class _AddNewResultState extends ConsumerState<AddNewResult> {
         value: _isNonGpa,
         onChanged: onChangeIsNonGpa,
       ),
-      modalActions: AddNewResultModalActions(
-        onEnter: onEnterResult,
+      modalActions: EditResultModalActions(
+        onSave: onSaveResult,
       ),
     );
   }

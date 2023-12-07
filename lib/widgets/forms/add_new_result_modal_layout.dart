@@ -9,6 +9,7 @@ class AddNewResultModalLayout extends StatelessWidget {
     required this.courseCreditsInput,
     required this.courseNonGpaCheckbox,
     required this.modalActions,
+    required this.title,
   });
 
   final Widget courseCodeInput;
@@ -17,6 +18,7 @@ class AddNewResultModalLayout extends StatelessWidget {
   final Widget courseCreditsInput;
   final Widget courseNonGpaCheckbox;
   final Widget modalActions;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class AddNewResultModalLayout extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          const Text("Enter Results"),
+          Text(title),
           const SizedBox(
             height: 16,
           ),
