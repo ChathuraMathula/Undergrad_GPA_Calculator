@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:undergrad_tracker/models/grade.dart';
 import 'package:undergrad_tracker/models/result.dart';
 import 'package:undergrad_tracker/providers/results_provider.dart';
 import 'package:undergrad_tracker/widgets/forms/add_new_result_modal_layout.dart';
@@ -24,9 +25,9 @@ class EditResult extends ConsumerStatefulWidget {
 class _EditResultState extends ConsumerState<EditResult> {
   late TextEditingController _courseCodeController;
   late TextEditingController _courseCreditsController;
-  late TextEditingController _courseGradeController;
   late TextEditingController _courseYearController;
   late bool _isNonGpa;
+  Grade? _courseGrade;
 
   onChangeIsNonGpa(isChecked) {
     setState(() {
@@ -67,7 +68,7 @@ class _EditResultState extends ConsumerState<EditResult> {
     if (_courseCodeController.text.isEmpty ||
         _courseCreditsController.text.isEmpty ||
         _courseYearController.text.isEmpty ||
-        _courseGradeController.text.isEmpty) {
+        _courseGrade == null) {
       _showError("Error", "Input fields cannot be emptly.");
       return;
     }
@@ -75,7 +76,7 @@ class _EditResultState extends ConsumerState<EditResult> {
     final result = Result(
       courseCode: _courseCodeController.text,
       courseYear: _courseYearController.text,
-      grade: _courseGradeController.text,
+      grade: _courseGrade!,
       credits: _courseCreditsController.text,
       isNonGPA: _isNonGpa,
     );
@@ -87,29 +88,27 @@ class _EditResultState extends ConsumerState<EditResult> {
     );
   }
 
+  _onSelectCourseGrade(selectedGrade) {
+    _courseGrade = selectedGrade;
+  }
+
   @override
   void initState() {
     super.initState();
-    _courseCodeController = TextEditingController(
-      text: widget.result.courseCode,
-    );
-    _courseYearController = TextEditingController(
-      text: widget.result.courseYear,
-    );
-    _courseGradeController = TextEditingController(
-      text: widget.result.grade,
-    );
-    _courseCreditsController = TextEditingController(
-      text: widget.result.credits,
-    );
+    _courseCodeController =
+        TextEditingController(text: widget.result.courseCode);
+    _courseYearController =
+        TextEditingController(text: widget.result.courseYear);
+    _courseCreditsController =
+        TextEditingController(text: widget.result.credits);
     _isNonGpa = widget.result.isNonGPA;
+    _courseGrade = widget.result.grade;
   }
 
   @override
   void dispose() {
     _courseCodeController.dispose();
     _courseCreditsController.dispose();
-    _courseGradeController.dispose();
     _courseYearController.dispose();
     super.dispose();
   }
@@ -129,7 +128,8 @@ class _EditResultState extends ConsumerState<EditResult> {
         controller: _courseCreditsController,
       ),
       courseGradeInput: CourseGradeInput(
-        controller: _courseGradeController,
+        initialValue: _courseGrade,
+        onSelected: _onSelectCourseGrade,
       ),
       courseNonGpaCheckbox: CourseNonGpaCheckbox(
         value: _isNonGpa,

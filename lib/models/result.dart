@@ -1,3 +1,5 @@
+import 'package:undergrad_tracker/models/grade.dart';
+
 class Result {
   Result({
     required this.courseCode,
@@ -8,7 +10,7 @@ class Result {
   });
 
   String courseCode;
-  String grade;
+  Grade grade;
   String courseYear;
   String credits;
   bool isNonGPA;

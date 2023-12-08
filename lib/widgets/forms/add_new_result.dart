@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:undergrad_tracker/models/grade.dart';
 import 'package:undergrad_tracker/models/result.dart';
 import 'package:undergrad_tracker/providers/results_provider.dart';
 import 'package:undergrad_tracker/widgets/forms/add_new_result_modal_actions.dart';
@@ -22,9 +23,9 @@ class AddNewResult extends ConsumerStatefulWidget {
 class _AddNewResultState extends ConsumerState<AddNewResult> {
   late TextEditingController _courseCodeController;
   late TextEditingController _courseCreditsController;
-  late TextEditingController _courseGradeController;
   late TextEditingController _courseYearController;
   late bool _isNonGpa;
+  Grade? _courseGrade;
 
   onChangeIsNonGpa(isChecked) {
     setState(() {
@@ -55,7 +56,7 @@ class _AddNewResultState extends ConsumerState<AddNewResult> {
     if (_courseCodeController.text.isEmpty ||
         _courseCreditsController.text.isEmpty ||
         _courseYearController.text.isEmpty ||
-        _courseGradeController.text.isEmpty) {
+        _courseGrade == null) {
       _showError("Error", "Input fields cannot be emptly.");
       return;
     }
@@ -63,7 +64,7 @@ class _AddNewResultState extends ConsumerState<AddNewResult> {
     final result = Result(
       courseCode: _courseCodeController.text,
       courseYear: _courseYearController.text,
-      grade: _courseGradeController.text,
+      grade: _courseGrade!,
       credits: _courseCreditsController.text,
       isNonGPA: _isNonGpa,
     );
@@ -72,11 +73,14 @@ class _AddNewResultState extends ConsumerState<AddNewResult> {
     Navigator.of(context).pop();
   }
 
+  _onSelectCourseGrade(selectedGrade) {
+    _courseGrade = selectedGrade;
+  }
+
   @override
   void dispose() {
     _courseCodeController.dispose();
     _courseCreditsController.dispose();
-    _courseGradeController.dispose();
     _courseYearController.dispose();
     super.dispose();
   }
@@ -86,7 +90,6 @@ class _AddNewResultState extends ConsumerState<AddNewResult> {
     super.initState();
     _courseCodeController = TextEditingController();
     _courseYearController = TextEditingController();
-    _courseGradeController = TextEditingController();
     _courseCreditsController = TextEditingController();
     _isNonGpa = false;
   }
@@ -105,7 +108,8 @@ class _AddNewResultState extends ConsumerState<AddNewResult> {
         controller: _courseCreditsController,
       ),
       courseGradeInput: CourseGradeInput(
-        controller: _courseGradeController,
+        initialValue: _courseGrade,
+        onSelected: _onSelectCourseGrade,
       ),
       courseNonGpaCheckbox: CourseNonGpaCheckbox(
         value: _isNonGpa,

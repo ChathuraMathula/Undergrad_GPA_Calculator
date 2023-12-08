@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:undergrad_tracker/models/grade.dart';
 
 class ResultListItemGrade extends StatelessWidget {
   const ResultListItemGrade({
@@ -6,12 +7,12 @@ class ResultListItemGrade extends StatelessWidget {
     required this.grade,
   });
 
-  final String grade;
+  final Grade grade;
 
   @override
   Widget build(BuildContext context) {
     Widget content = Text(
-      grade,
+      grade.text,
       style: const TextStyle().copyWith(
         fontSize: 16,
         fontWeight: FontWeight.bold,

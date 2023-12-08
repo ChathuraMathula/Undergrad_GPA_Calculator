@@ -48,6 +48,13 @@ class App extends StatelessWidget {
           visualDensity: VisualDensity.comfortable
               .copyWith(horizontal: 0.5, vertical: 0.5),
         ),
+        drawerTheme: const DrawerThemeData().copyWith(
+          scrimColor: kColorScheme.onPrimaryContainer.withOpacity(0.5),
+          shape: const ContinuousRectangleBorder(),
+        ),
+        bottomSheetTheme: const BottomSheetThemeData().copyWith(
+          shape: const ContinuousRectangleBorder(),
+        ),
       ),
       title: "My app",
       home: const ResultsScreen(),

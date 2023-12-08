@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:undergrad_tracker/models/grade.dart';
 
 class ResultListItemGradeIsPendingLabel extends StatelessWidget {
   const ResultListItemGradeIsPendingLabel({super.key, required this.grade});
 
-  final String grade;
+  final Grade grade;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class ResultListItemGradeIsPendingLabel extends StatelessWidget {
         // width: 55,
         );
 
-    if (grade == "Pending") {
+    if (grade.text == "Pending") {
       content = Container(
         height: 16,
         width: 55,

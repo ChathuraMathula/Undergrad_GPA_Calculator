@@ -20,6 +20,7 @@ class ResultsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      backgroundColor: Colors.white,
       drawer: const AppDrawer(),
       appBar: AppBar(
         title: Text(
@@ -29,11 +30,27 @@ class ResultsScreen extends ConsumerWidget {
           ),
         ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              addCourseResult(context);
-            },
+          Container(
+            width: 100,
+            margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
+            child: ElevatedButton.icon(
+              style: ButtonStyle().copyWith(
+                backgroundColor: MaterialStatePropertyAll(
+                  Theme.of(context).colorScheme.primary,
+                ),
+                shadowColor: MaterialStatePropertyAll(
+                  Theme.of(context).colorScheme.onSecondaryContainer,
+                ),
+                foregroundColor: MaterialStatePropertyAll(
+                  Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
+              onPressed: () {
+                addCourseResult(context);
+              },
+              icon: const Icon(Icons.add),
+              label: const Text("Add"),
+            ),
           ),
         ],
       ),
