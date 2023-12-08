@@ -4,6 +4,7 @@ import 'package:undergrad_tracker/utils/color_utils.dart';
 import 'package:undergrad_tracker/widgets/lists/result_list/result_list_item_course_code.dart';
 import 'package:undergrad_tracker/widgets/lists/result_list/result_list_item_credits.dart';
 import 'package:undergrad_tracker/widgets/lists/result_list/result_list_item_grade.dart';
+import 'package:undergrad_tracker/widgets/lists/result_list/result_list_item_grade_is_pending_label.dart';
 import 'package:undergrad_tracker/widgets/lists/result_list/result_list_item_non_gpa_label.dart';
 import 'package:undergrad_tracker/widgets/lists/result_list/result_list_item_year_label.dart';
 
@@ -15,8 +16,8 @@ class ResultListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
-      margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+      height: 80,
+      // margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
       decoration: const BoxDecoration().copyWith(
         color: Colors.white,
         boxShadow: [
@@ -24,8 +25,7 @@ class ResultListItem extends StatelessWidget {
             color: Theme.of(context).colorScheme.onPrimaryContainer,
             spreadRadius: 0.3,
             blurRadius: 3,
-            blurStyle: BlurStyle.outer,
-            offset: Offset.fromDirection(0.2),
+            blurStyle: BlurStyle.inner,
           ),
         ],
       ),
@@ -47,29 +47,32 @@ class ResultListItem extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.fromLTRB(16, 12, 12, 12),
-            child: Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ResultListItemCourseCode(courseCode: result.courseCode),
-                  ResultListItemYearLabel(courseYear: result.courseYear),
-                  ResultListItemNonGpaLabel(isNonGpa: result.isNonGPA),
-                ],
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ResultListItemCourseCode(courseCode: result.courseCode),
+                Row(
+                  children: [
+                    ResultListItemYearLabel(courseYear: result.courseYear),
+                    const SizedBox(width: 4),
+                    ResultListItemGradeIsPendingLabel(grade: result.grade),
+                    const SizedBox(width: 4),
+                    ResultListItemNonGpaLabel(isNonGpa: result.isNonGPA),
+                  ],
+                ),
+              ],
             ),
           ),
           const Spacer(),
           Container(
-            padding: const EdgeInsets.fromLTRB(12, 12, 16, 12),
-            child: Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ResultListItemGrade(grade: result.grade),
-                  ResultListItemCredits(credits: result.credits),
-                ],
-              ),
+            padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ResultListItemGrade(grade: result.grade),
+                ResultListItemCredits(credits: result.credits),
+              ],
             ),
           ),
         ],

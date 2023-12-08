@@ -68,7 +68,7 @@ class _ResultListState extends ConsumerState<ResultList> {
           key: ValueKey(resultList[index]),
           background: Container(
             height: 100,
-            margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+            // margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
             color: getColorByCourseYear(resultList[index].courseYear)
                 .withOpacity(0.5),
             alignment: Alignment.centerLeft,
@@ -81,7 +81,7 @@ class _ResultListState extends ConsumerState<ResultList> {
           ),
           secondaryBackground: Container(
             height: 100,
-            margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+            // margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
             color: Theme.of(context).colorScheme.error.withOpacity(0.8),
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.symmetric(horizontal: 20.0),

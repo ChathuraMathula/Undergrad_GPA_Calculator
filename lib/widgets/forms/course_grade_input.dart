@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const grades = [
+  "Pending",
   "A+",
   "A",
   "A-",
@@ -23,14 +24,8 @@ class CourseGradeInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownMenu(
+      width: 115,
       controller: controller,
-      inputDecorationTheme: const InputDecorationTheme(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(20),
-          ),
-        ),
-      ),
       label: const Text("Grade"),
       dropdownMenuEntries: [
         for (final grade in grades)

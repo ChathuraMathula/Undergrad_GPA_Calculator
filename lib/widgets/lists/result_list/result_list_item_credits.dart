@@ -7,6 +7,11 @@ class ResultListItemCredits extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Credits: $credits');
+    return Text(
+      'Credits: $credits',
+      style: const TextStyle().copyWith(
+        fontSize: 12,
+      ),
+    );
   }
 }

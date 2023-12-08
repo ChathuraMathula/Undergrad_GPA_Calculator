@@ -11,8 +11,8 @@ class ResultListItemYearLabel extends StatelessWidget {
     Color color = getColorByCourseYear(courseYear);
 
     return Container(
-      height: 18,
-      width: 70,
+      height: 16,
+      width: 55,
       // margin: const EdgeInsets.fromLTRB(0, 8, 0, 8),
       decoration: BoxDecoration(
         color: color,
@@ -22,7 +22,7 @@ class ResultListItemYearLabel extends StatelessWidget {
         child: Text(
           'Year $courseYear',
           style: const TextStyle().copyWith(
-            fontSize: 10,
+            fontSize: 8,
             color: Colors.white,
           ),
         ),

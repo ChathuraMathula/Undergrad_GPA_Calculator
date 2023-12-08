@@ -22,7 +22,12 @@ class ResultsScreen extends ConsumerWidget {
     return Scaffold(
       drawer: const AppDrawer(),
       appBar: AppBar(
-        title: const Text("Exam Results"),
+        title: Text(
+          "Exam Results",
+          style: const TextStyle().copyWith(
+            fontSize: 18,
+          ),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),

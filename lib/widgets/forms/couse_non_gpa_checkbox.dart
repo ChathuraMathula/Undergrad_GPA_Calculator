@@ -24,10 +24,17 @@ class CourseNonGpaCheckbox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Checkbox(
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               value: value,
               onChanged: onChanged,
             ),
-            const Text("Non-GPA"),
+            Text(
+              "Non-GPA",
+              style: const TextStyle().copyWith(
+                fontSize: 13,
+                color: const Color.fromARGB(255, 51, 51, 51),
+              ),
+            ),
           ],
         ),
       ],

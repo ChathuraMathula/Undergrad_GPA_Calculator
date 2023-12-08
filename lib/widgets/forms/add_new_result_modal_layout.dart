@@ -26,41 +26,36 @@ class AddNewResultModalLayout extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          Text(title),
-          const SizedBox(
-            height: 16,
+          Text(
+            title,
+            style: const TextStyle().copyWith(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
           ),
+          const SizedBox(height: 16),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               courseCodeInput,
-              const SizedBox(
-                width: 8,
-              ),
+              const SizedBox(width: 8),
               courseYearInput,
             ],
           ),
-          const SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               courseNonGpaCheckbox,
-              const SizedBox(
-                width: 12,
-              ),
+              const SizedBox(width: 12),
               courseCreditsInput,
-              const SizedBox(
-                width: 8,
-              ),
+              const SizedBox(width: 8),
               courseGradeInput,
             ],
           ),
-          const SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           modalActions,
         ],
       ),

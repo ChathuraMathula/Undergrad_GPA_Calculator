@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ResultListItemNonGpaLabel extends StatelessWidget {
-  const ResultListItemNonGpaLabel({super.key, required this.isNonGpa});
+class ResultListItemGradeIsPendingLabel extends StatelessWidget {
+  const ResultListItemGradeIsPendingLabel({super.key, required this.grade});
 
-  final bool isNonGpa;
+  final String grade;
 
   @override
   Widget build(BuildContext context) {
@@ -12,26 +12,26 @@ class ResultListItemNonGpaLabel extends StatelessWidget {
         // width: 55,
         );
 
-    if (isNonGpa) {
+    if (grade == "Pending") {
       content = Container(
         height: 16,
         width: 55,
+        // margin: const EdgeInsets.fromLTRB(0, 8, 0, 8),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onTertiaryContainer,
+          color: Colors.red,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(
           child: Text(
-            "Non-GPA",
+            'Pending...',
             style: const TextStyle().copyWith(
               fontSize: 8,
-              color: Theme.of(context).colorScheme.onTertiary,
+              color: Colors.white,
             ),
           ),
         ),
       );
     }
-
     return content;
   }
 }
