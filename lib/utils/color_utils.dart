@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Color getColorByCourseYear(String courseYear) {
+Color getColorByCourseYear(int courseYear) {
   List<Color> colors = const [
     Color.fromARGB(255, 102, 204, 255),
     Color.fromARGB(255, 153, 102, 255),
@@ -10,7 +10,5 @@ Color getColorByCourseYear(String courseYear) {
     Color.fromARGB(255, 102, 255, 204),
   ];
 
-  final year = int.parse(courseYear);
-
-  return colors[year % colors.length];
+  return colors[courseYear % colors.length];
 }

@@ -4,7 +4,7 @@ import 'package:undergrad_tracker/utils/color_utils.dart';
 class ResultListItemYearLabel extends StatelessWidget {
   const ResultListItemYearLabel({super.key, required this.courseYear});
 
-  final String courseYear;
+  final int courseYear;
 
   @override
   Widget build(BuildContext context) {

@@ -32,9 +32,9 @@ class ResultsScreen extends ConsumerWidget {
         actions: [
           Container(
             width: 100,
-            margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
+            margin: const EdgeInsets.fromLTRB(0, 0, 16, 0),
             child: ElevatedButton.icon(
-              style: ButtonStyle().copyWith(
+              style: const ButtonStyle().copyWith(
                 backgroundColor: MaterialStatePropertyAll(
                   Theme.of(context).colorScheme.primary,
                 ),

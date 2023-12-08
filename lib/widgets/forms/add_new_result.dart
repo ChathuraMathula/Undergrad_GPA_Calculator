@@ -63,9 +63,9 @@ class _AddNewResultState extends ConsumerState<AddNewResult> {
 
     final result = Result(
       courseCode: _courseCodeController.text,
-      courseYear: _courseYearController.text,
+      courseYear: int.parse(_courseYearController.text),
       grade: _courseGrade!,
-      credits: _courseCreditsController.text,
+      credits: int.parse(_courseCreditsController.text),
       isNonGPA: _isNonGpa,
     );
 

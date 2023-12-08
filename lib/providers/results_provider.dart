@@ -25,14 +25,18 @@ class ResultsNotifier extends StateNotifier<List<Result>> {
   void updateResult(Result result) {
     List<Result> results = [...state];
 
-    for (final curResult in results) {
-      if (curResult.courseCode == result.courseCode) {
-        curResult.courseYear = result.courseYear;
-        curResult.credits = result.credits;
-        curResult.grade = result.grade;
-        curResult.isNonGPA = result.isNonGPA;
-      } else {
-        continue;
+    final newResult = Result(
+      courseCode: result.courseCode,
+      courseYear: result.courseYear,
+      grade: result.grade,
+      credits: result.credits,
+      isNonGPA: result.isNonGPA,
+    );
+
+    for (var i = 0; i < results.length; i++) {
+      if (results[i].courseCode == result.courseCode) {
+        results[i] = newResult;
+        break;
       }
     }
 

@@ -75,9 +75,9 @@ class _EditResultState extends ConsumerState<EditResult> {
 
     final result = Result(
       courseCode: _courseCodeController.text,
-      courseYear: _courseYearController.text,
+      courseYear: int.parse(_courseYearController.text),
       grade: _courseGrade!,
-      credits: _courseCreditsController.text,
+      credits: int.parse(_courseCreditsController.text),
       isNonGPA: _isNonGpa,
     );
 
@@ -98,9 +98,9 @@ class _EditResultState extends ConsumerState<EditResult> {
     _courseCodeController =
         TextEditingController(text: widget.result.courseCode);
     _courseYearController =
-        TextEditingController(text: widget.result.courseYear);
+        TextEditingController(text: widget.result.courseYear.toString());
     _courseCreditsController =
-        TextEditingController(text: widget.result.credits);
+        TextEditingController(text: widget.result.credits.toString());
     _isNonGpa = widget.result.isNonGPA;
     _courseGrade = widget.result.grade;
   }

@@ -19,7 +19,7 @@ class ResultListItemGrade extends StatelessWidget {
       ),
     );
 
-    if (grade == "Pending") {
+    if (grade.text == "Pending") {
       content = const Icon(Icons.new_label_rounded);
     }
 

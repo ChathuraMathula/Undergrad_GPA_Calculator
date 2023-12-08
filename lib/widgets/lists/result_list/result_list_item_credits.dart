@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ResultListItemCredits extends StatelessWidget {
   const ResultListItemCredits({super.key, required this.credits});
 
-  final String credits;
+  final int credits;
 
   @override
   Widget build(BuildContext context) {
