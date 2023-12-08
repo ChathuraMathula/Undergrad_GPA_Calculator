@@ -23,7 +23,7 @@ class ResultListItemGradeIsPendingLabel extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            'Pending...',
+            'Pending',
             style: const TextStyle().copyWith(
               fontSize: 8,
               color: Colors.white,
