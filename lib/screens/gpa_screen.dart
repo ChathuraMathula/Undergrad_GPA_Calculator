@@ -19,7 +19,9 @@ class _GpaScreenState extends ConsumerState<GpaScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: const AppDrawer(),
+      drawer: const AppDrawer(
+        gpaSelected: true,
+      ),
       appBar: AppBar(
         title: Text(
           "GPA",
@@ -28,7 +30,56 @@ class _GpaScreenState extends ConsumerState<GpaScreen> {
           ),
         ),
       ),
-      body: Text('${gpa.overAllGpa}'),
+      body: Container(
+        alignment: Alignment.topCenter,
+        decoration: const BoxDecoration().copyWith(
+          border: Border.all(),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 16,
+            ),
+            Container(
+              height: 100,
+              padding: const EdgeInsets.all(16),
+              decoration: const BoxDecoration().copyWith(
+                // border: Border.all(),
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                    spreadRadius: 0.3,
+                    blurRadius: 3,
+                    blurStyle: BlurStyle.outer,
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Your current GPA value is,",
+                    style: const TextStyle().copyWith(
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                    ),
+                  ),
+                  Text(
+                    '${gpa.overAllGpa}',
+                    style: const TextStyle().copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

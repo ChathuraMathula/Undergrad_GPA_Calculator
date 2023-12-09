@@ -52,8 +52,18 @@ class App extends StatelessWidget {
           scrimColor: kColorScheme.onPrimaryContainer.withOpacity(0.5),
           shape: const ContinuousRectangleBorder(),
         ),
+        listTileTheme: const ListTileThemeData().copyWith(
+          selectedTileColor: kColorScheme.inversePrimary.withOpacity(0.5),
+          selectedColor: kColorScheme.onPrimaryContainer,
+        ),
         bottomSheetTheme: const BottomSheetThemeData().copyWith(
           shape: const ContinuousRectangleBorder(),
+        ),
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+            // TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          },
         ),
       ),
       title: "My app",

@@ -21,7 +21,9 @@ class ResultsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: const AppDrawer(),
+      drawer: const AppDrawer(
+        resultsSelected: true,
+      ),
       appBar: AppBar(
         title: Text(
           "Exam Results",
@@ -36,20 +38,25 @@ class ResultsScreen extends ConsumerWidget {
             child: ElevatedButton.icon(
               style: const ButtonStyle().copyWith(
                 backgroundColor: MaterialStatePropertyAll(
-                  Theme.of(context).colorScheme.primary,
+                  Theme.of(context).colorScheme.inversePrimary,
                 ),
                 shadowColor: MaterialStatePropertyAll(
                   Theme.of(context).colorScheme.onSecondaryContainer,
                 ),
                 foregroundColor: MaterialStatePropertyAll(
-                  Theme.of(context).colorScheme.onPrimary,
+                  Theme.of(context).colorScheme.onPrimaryContainer,
                 ),
               ),
               onPressed: () {
                 addCourseResult(context);
               },
               icon: const Icon(Icons.add),
-              label: const Text("Add"),
+              label: Text(
+                "Add",
+                style: const TextStyle().copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
         ],
