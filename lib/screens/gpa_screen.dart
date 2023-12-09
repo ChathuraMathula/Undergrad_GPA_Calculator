@@ -32,9 +32,6 @@ class _GpaScreenState extends ConsumerState<GpaScreen> {
       ),
       body: Container(
         alignment: Alignment.topCenter,
-        decoration: const BoxDecoration().copyWith(
-          border: Border.all(),
-        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -67,7 +64,7 @@ class _GpaScreenState extends ConsumerState<GpaScreen> {
                     ),
                   ),
                   Text(
-                    '${gpa.overAllGpa}',
+                    gpa.overAllGpa.toStringAsFixed(2),
                     style: const TextStyle().copyWith(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
